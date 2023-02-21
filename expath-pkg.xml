@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package
+    xmlns="http://expath.org/ns/pkg"
+    name="http://hoax.obdurodon.org/app/hoaXed"
+    abbrev="hoaXed"
+    version="0.0.1"
+    spec="1.0">
+    <title>Hoax Edition: a learning app for eXist-db</title>
+    <dependency processor="http://exist-db.org" semver-min="6.1.0"/>
+</package>

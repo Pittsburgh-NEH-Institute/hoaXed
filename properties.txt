@@ -1,0 +1,68 @@
+# properties.txt
+#
+# Part of https://github.com/Pittsburgh-NEH-Institute/initializer
+#
+# Instructions: Edit the property values (inside single quotes to the 
+# right of the equal sign) to specify values appropriate for your 
+# project. Then run the Initializer.
+
+# ---
+# initializer configuration settings
+# ---
+
+# create_directory_structure : If "true", creates directories for
+# modules, views, data, tests with placeholder .gitkeep files. 
+# Otherwise does nothing.
+create_directory_structure="true"
+
+# ---
+# app data
+# ---
+
+# name : Short name, no spaces or special characters 
+# This will be the collection name where the app is installed.
+name='hoaXed'
+
+# description : Description shown in package manager
+# This can be a longer version of the name.
+description='Hoax Edition: a learning app for eXist-db'
+
+# project_URI : Serves as the base URI for the project namespace
+# Use a unique URI that is associated with you.
+project_URI='http://hoax.obdurodon.org'
+
+# version : Use semantic versioning
+# Initial projects will use 0.0.1.
+# To update semantic version in app later, either:
+#   Change the value here and rerun the initializer, or
+#   Update the version in expath-pkg.xml
+version='0.0.1'
+
+# release_status : Release status is appended to version number
+# Suggested values are 'alpha', 'beta', or 'stable'
+# To update release status in app later, either:
+#   Change the value here and rerun the initializer, or
+#   Update the status in repo.xml
+release_status='alpha'
+
+# exist_version : eXist-db version used for app development
+# To update eXist-db version in app later, either:
+#   Change the value here and rerun the initializer, or
+#   Update @semver-min on <dependency> in expath-pkg.xml
+exist_version='6.1.0'
+
+# license : Software license you choose to use
+# Create a corresponding LICENSE file in GitHub when you
+#   initialize remotely, then git pull.
+license='GNU-GPL'
+
+# ---
+# developer data
+# ---
+
+# author : app developer name in human language
+author='Gabi Keane'
+
+# author_URI : author’s website or empty string
+author_URI='http://obdurodon.org/gab'
+

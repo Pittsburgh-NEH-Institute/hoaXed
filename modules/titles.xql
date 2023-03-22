@@ -24,13 +24,16 @@ declare variable $articles-coll as document-node()+
 declare variable $articles as element(tei:TEI)+ 
     := $articles-coll/tei:TEI;
 (:==========
-Address each article, output one list element containing item elements
+Address each article, output one list element containing item elements, which hold title and date elements
 ==========:)
 <m:list>
 {for $article in $articles
+    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string(.)
+    let $year as xs:string := $article//tei:sourceDesc//tei:bibl//tei:date/@when ! fn:string()
     return 
         <m:item>
-            {$article//tei:titleStmt/tei:title ! fn:string(.)}
+            <m:title>{$title}</m:title>
+            <m:date>{$year}</m:date>
         </m:item>
 }
 </m:list>

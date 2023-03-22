@@ -24,9 +24,13 @@ declare variable $articles-coll as document-node()+
 declare variable $articles as element(tei:TEI)+ 
     := $articles-coll/tei:TEI;
 (:==========
-Address each article and output one list element
+Address each article, output one list element containing item elements
 ==========:)
 <m:list>
 {for $article in $articles
-return $article//tei:titleStmt/tei:title ! fn:string(.)}
+    return 
+        <m:item>
+            {$article//tei:titleStmt/tei:title ! fn:string(.)}
+        </m:item>
+}
 </m:list>

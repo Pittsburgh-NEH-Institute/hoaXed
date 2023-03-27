@@ -32,22 +32,25 @@ namespace in line 8.
 We can view the HTML section in a web browser by going to http://localhost:8080/exist/apps/hoaXed/tmp/titles-html.xql
 ==========:)
 declare variable $data as element(m:list) :=
-<m:list>
-{for $article in $articles
-    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string()
-    let $year as xs:string := $article//tei:sourceDesc//tei:bibl//tei:date/@when ! fn:string()
-    return 
-        <m:item>
-            <m:title>{$title}</m:title>
-            <m:date>{$year}</m:date>
-        </m:item>
-}
-</m:list>
-;
+    <m:list>
+        {for $article in $articles
+            let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string()
+            let $year as xs:string := $article//tei:sourceDesc//tei:bibl//tei:date/@when ! fn:string()
+                return 
+                <m:item>
+                    <m:title>{$title}</m:title>
+                    <m:date>{$year}</m:date>
+                </m:item>
+        }
+    </m:list>;
+
+(:==========
+HTML rendering begins here
+===========:)    
 <html:section>
-  <html:ul>{ 
-    for $item in $data/m:item
-    return
-        <html:li>{$item/m:title || ", " || $item/m:date}</html:li>
-}</html:ul>
+    <html:ul>{ 
+        for $item in $data/m:item
+        return
+            <html:li>{$item/m:title || ", " || $item/m:date}</html:li>
+    }</html:ul>
 </html:section>

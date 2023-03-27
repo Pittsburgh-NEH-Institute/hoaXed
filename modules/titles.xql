@@ -28,7 +28,7 @@ Address each article, output one list element containing item elements, which ho
 ==========:)
 <m:list>
 {for $article in $articles
-    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string(.)
+    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string()
     let $year as xs:string := $article//tei:sourceDesc//tei:bibl//tei:date/@when ! fn:string()
     return 
         <m:item>

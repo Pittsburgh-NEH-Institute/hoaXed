@@ -34,7 +34,7 @@ We can view the HTML section in a web browser by going to http://localhost:8080/
 declare variable $data as element(m:list) :=
 <m:list>
 {for $article in $articles
-    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string(.)
+    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string()
     let $year as xs:string := $article//tei:sourceDesc//tei:bibl//tei:date/@when ! fn:string()
     return 
         <m:item>
@@ -44,7 +44,6 @@ declare variable $data as element(m:list) :=
 }
 </m:list>
 ;
-
 <html:section>
   <html:ul>{ 
     for $item in $data/m:item

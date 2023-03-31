@@ -1,0 +1,120 @@
+/*
+==========
+General
+==========
+*/
+:root {
+    --background-color: #f3f7f5;
+    --text-color: #444545;
+    --title-color: darkgreen;
+    --highlight-color: #ceded6;
+}
+
+q {
+    quotes: "“""”""‘""’";
+}
+
+q::before {
+    content: open-quote;
+}
+
+q::after {
+    content: close-quote;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background-color: lightgray;
+}
+
+a:link {
+    color: var(--title-color);
+    text-decoration: none;
+}
+a:hover {
+    background-color: var(--highlight-color);
+    
+}
+table, tr, th, td {
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: .25em;
+}
+
+.error {
+    border: 1px solid gray;
+    padding: .5em;
+    font-size: smaller;
+}
+.left-indent {margin-left: 1em;}
+
+/*
+=======
+HTML Template styling
+=======
+*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1em;
+    min-height: 99vh;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+h1 {
+    font-family: monospace;
+    font-size:2em;
+    color: var(--title-color);
+}
+
+main {
+    flex: 1;
+}
+
+.nav-menu {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+/*
+==========
+Main navigation
+==========
+*/
+nav {
+    display: flex;
+    flex-flow: row wrap-reverse;
+    align-items: center;
+}
+
+nav>ul {
+    display: flex;
+    flex-flow: row;
+    gap: 2em;
+}
+
+nav>ul>li {
+    flex: auto;
+    list-style-type: none;
+}
+
+nav>form {
+    display: flex;
+}
+
+/* 
+==========
+Footer 
+https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+==========
+*/
+footer {
+    display: block;
+}

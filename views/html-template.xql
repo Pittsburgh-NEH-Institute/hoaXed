@@ -20,14 +20,15 @@ declare variable $text := request:get-data();
      
 <html>
     <head>
-        <title>Hoax</title>
-   
+        <title>hoaXed</title>
+        <link rel="stylesheet" media="screen" type="text/css" href="resources/css/hoax.css"/>
+        <link rel="icon" type="image/png" href="icon.png"/>
     </head>
     <body>
         <section class="nav-menu">
             <img src="icon.png" width="35" style="margin-right:1em;"/>                     
             <header>
-                <h1><a href="index">Hoax: ghosts in 19th-c. British press</a></h1>
+                <h1><a href="index">hoaXed: ghosts in 19th-c. British press</a></h1>
             </header>
             <nav>
                 <ul>

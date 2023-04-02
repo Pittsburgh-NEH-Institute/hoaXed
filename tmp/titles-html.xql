@@ -16,7 +16,7 @@ declare variable $exist:controller as xs:string :=
 declare variable $path-to-data as xs:string := 
     $exist:root || $exist:controller || '/data';
 (:==========
-Declare variable
+Declare variables
 ==========:)
 declare variable $articles-coll as document-node()+ 
     := collection($path-to-data || '/hoax_xml');
@@ -27,7 +27,7 @@ declare variable $articles as element(tei:TEI)+
 Instead of using a controller to connect the pieces of the pipeline,
 we'll declare a variable to hold that data, and then we'll pipe that into
 our view code. The view code is an HTML section (see above, we use the HTML
-namespace in line 8.
+namespace in line 8.)
 
 We can view the HTML section in a web browser by going to http://localhost:8080/exist/apps/hoaXed/tmp/titles-html.xql
 ==========:)

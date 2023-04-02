@@ -12,16 +12,15 @@ declare option output:html-version "5.0";
 declare option output:indent "no";
 declare option output:include-content-type "no";
 
-(:::::
+(:=====
 this variable allows the pipeline to work by providing
 input for the section created by titles-to-html.xql
-:::::)
+=====:)
 declare variable $text := request:get-data(); 
      
 <html>
     <head>
         <title>Hoax</title>
-   
     </head>
     <body>
         <section class="nav-menu">

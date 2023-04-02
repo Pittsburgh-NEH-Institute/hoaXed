@@ -1,7 +1,7 @@
 xquery version "3.1";
-(:==========
+(:=====
 Declare namespaces
-===========:)
+=====:)
 declare namespace hoax = "http://www.obdurodon.org/hoaxed";
 declare namespace m = "http://www.obdurodon.org/model";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";

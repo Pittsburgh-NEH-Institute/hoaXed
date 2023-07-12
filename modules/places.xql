@@ -18,20 +18,17 @@ declare variable $path-to-data as xs:string :=
 
 declare variable $gazeteer as document-node() := 
     doc($exist:root || $exist:controller || '/data/aux_xml/places.xml');
-
+    
 <m:places>{
-for $entry in $gazeteer/descendant::tei:place
+for $entry in $gazeteer/descendant::tei:place[ft:query(., (), map{'fields':('format-lat','format-long')})]
 let $place-name as xs:string+ := $entry/tei:placeName ! string()
-let $geo as element(tei:geo)? := $entry/tei:location/tei:geo
-let $lat as xs:string := substring-before($geo, " ")
-let $long as xs:string := substring-after($geo, " ")
 let $parent as xs:string? := $entry/parent::tei:place/tei:placeName[1] ! string()
 return
     <m:placeEntry>
         {$place-name !  <m:placeName>{.}</m:placeName>}
         <m:geo>
-            <m:lat>{$lat}</m:lat>
-            <m:long>{$long}</m:long>
+            <m:lat>{ft:field($entry, 'format-lat')}</m:lat>
+            <m:long>{ft:field($entry, 'format-long')}</m:long>
         </m:geo>
         {$parent ! <m:parentPlace>{.}</m:parentPlace>}
     </m:placeEntry>

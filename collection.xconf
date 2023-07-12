@@ -6,7 +6,7 @@
             <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
             <analyzer id="ws" class="org.apache.lucene.analysis.core.WhitespaceAnalyzer"/>
             <module uri="http://www.obdurodon.org/hoaxed" prefix="hoax" at="modules/functions.xqm"/>
-            <text qname="tei:TEI">
+            <text qname="tei:place">
 
                 <!-- ==================================================== -->
                 <!-- Format number latitude                               -->
@@ -16,7 +16,7 @@
                 <!-- ==================================================== -->
                 <field 
                     name="format-lat" 
-                    expression="descendant::tei:geo ! substring-before(. ,' ') ! hoax:round-geo(., 5)"
+                    expression="tei:location/tei:geo ! substring-before(. ,' ') ! hoax:round-geo(., 5)"
                     />
                 <!-- ==================================================== -->
                 <!-- Format number longitude                              -->
@@ -26,7 +26,7 @@
                 <!-- ==================================================== -->
                 <field 
                     name="format-long" 
-                    expression="descendant::tei:geo ! substring-after(. ,' ') ! hoax:round-geo(., 5)"
+                    expression="tei:location/tei:geo ! substring-after(. ,' ') ! hoax:round-geo(., 5)"
                     />    
             </text>           
         </lucene>

@@ -36,7 +36,7 @@ declare variable $text := request:get-data();
                     <li><a href="maps">Maps</a></li> 
                     <li><a href="visualize">Visualization</a></li>
                     <li><a href="places">Places</a></li>
-                    <li><a href="persons">People</a></li>     
+                    <li><a href="people">People</a></li>     
                 </ul>
             </nav>
         </section> 

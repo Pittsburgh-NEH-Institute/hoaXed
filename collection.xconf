@@ -16,7 +16,7 @@
                 <!-- ==================================================== -->
                 <field 
                     name="format-lat" 
-                    expression="tei:location/tei:geo ! substring-before(. ,' ') ! hoax:round-geo(., 5)"
+                    expression="tei:location/tei:geo ! substring-before(. ,' ') ! hoax:round-geo(.)"
                     />
                 <!-- ==================================================== -->
                 <!-- Format number longitude                              -->
@@ -26,7 +26,7 @@
                 <!-- ==================================================== -->
                 <field 
                     name="format-long" 
-                    expression="tei:location/tei:geo ! substring-after(. ,' ') ! hoax:round-geo(., 5)"
+                    expression="tei:location/tei:geo ! substring-after(. ,' ') ! hoax:round-geo(.)"
                     />    
             </text>           
         </lucene>

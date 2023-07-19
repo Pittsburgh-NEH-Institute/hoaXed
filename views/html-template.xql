@@ -16,7 +16,7 @@ declare option output:include-content-type "no";
 this variable allows the pipeline to work by providing
 input for the section created by titles-to-html.xql
 =====:)
-declare variable $text := request:get-data(); 
+declare variable $text as document-node() := request:get-data(); 
      
 <html>
     <head>

@@ -2,8 +2,6 @@ xquery version "3.1";
 (:=====
 Declare namespaces
 =====:)
-
-
 import module namespace hoax ="http://www.obdurodon.org/hoaxed" at "../modules/functions.xqm";
 
 declare namespace m = "http://www.obdurodon.org/model";
@@ -33,6 +31,5 @@ let $long as xs:string := substring-after($geo, " ")
 return
 
 <result>
-{if ($lat) then hoax:round-geo($lat) else ()}
-
+{if ($lat) then hoax:round-geo($lat, 2) else ()}
 </result>

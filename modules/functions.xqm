@@ -16,9 +16,7 @@ declare namespace m = "http://www.obdurodon.org/model";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 declare namespace html="http://www.w3.org/1999/xhtml";
 
-declare function hoax:round-geo($input as xs:string, $precision as xs:integer) as xs:string {
-    format-number(
-        number($input), 
-        '0.' || string-join((1 to $precision) ! '0')
-    )
+declare function hoax:round-geo($input as xs:string) as xs:string {
+    format-number(number($input), '0.00000')
+    
 };

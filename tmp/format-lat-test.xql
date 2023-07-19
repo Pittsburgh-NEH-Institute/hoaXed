@@ -33,6 +33,6 @@ let $long as xs:string := substring-after($geo, " ")
 return
 
 <result>
-{if ($lat) then hoax:round-geo($lat, 5) else ()}
+{if ($lat) then hoax:round-geo($lat) else ()}
 
 </result>

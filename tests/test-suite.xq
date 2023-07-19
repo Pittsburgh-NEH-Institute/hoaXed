@@ -5,20 +5,10 @@ xquery version "3.0";
 module namespace tests="http://hoax.obdurodon.org/tests";
 declare namespace test="http://exist-db.org/xquery/xqsuite";
 
-import module namespace f="http://hoax.obdurodon.org" at "../modules/lib.xql";
 import module namespace hoax="http://www.obdurodon.org/hoaxed" at "../modules/functions.xqm";
 
 declare namespace m = "http://www.obdurodon.org/model";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
-
-(: default tests :)
-declare
-    %test:arg("n", 1) %test:assertEquals(1)
-    %test:arg("n", 5) %test:assertEquals(120)
-    %test:arg("n", 1) %test:assertEquals(10000) (: should fail :)
-function tests:factorial($n as xs:int) as xs:int {
-    f:factorial($n)
-};
 
 (: geo functions :)
 declare

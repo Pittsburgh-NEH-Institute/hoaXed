@@ -18,9 +18,19 @@ declare variable $data as document-node() := request:get-data();
 HTML rendering begins here
 =====:)
 <html:section>
-    <html:ul>{ 
-        for $item in $data//m:item
-        return
-            <html:li>{$item/m:title || ", " || $item/m:date}</html:li>
-    }</html:ul>
+{for $item in $data//m:article
+    let $id as xs:string := $item/m:id ! string()
+    let $title as xs:string := $item/m:title ! string()
+    let $publisher as xs:string :=$item/m:publisher ! string()
+    let $date as xs:string :=$item/m:date ! string()
+    let $incipit as xs:string :=$item/m:incipit ! string()
+return
+    <html:ul>
+        <html:li>{$title}</html:li>
+        <html:li>{$id}</html:li>
+        <html:li>{$publisher}</html:li>
+        <html:li>{$date}</html:li>
+        <html:li>{$incipit}</html:li>
+    </html:ul>
+}
 </html:section>

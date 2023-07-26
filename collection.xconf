@@ -7,9 +7,8 @@
             <analyzer id="ws" class="org.apache.lucene.analysis.core.WhitespaceAnalyzer"/>
             <module uri="http://www.obdurodon.org/hoaxed" prefix="hoax" at="modules/functions.xqm"/>
             <text qname="tei:place">
-
                 <!-- ==================================================== -->
-                <!-- Format number latitude                               -->
+                <!-- Format number latitude (field)                       -->
                 <!--                                                      -->
                 <!-- Use the format-number function to format and store   -->
                 <!-- latitude                                             -->
@@ -19,7 +18,7 @@
                     expression="tei:location/tei:geo ! substring-before(. ,' ') ! hoax:round-geo(.)"
                     />
                 <!-- ==================================================== -->
-                <!-- Format number longitude                              -->
+                <!-- Format number longitude (field)                      -->
                 <!--                                                      -->
                 <!-- Use the format-number function to format and store   -->
                 <!-- longitude                                            -->
@@ -28,7 +27,47 @@
                     name="format-long" 
                     expression="tei:location/tei:geo ! substring-after(. ,' ') ! hoax:round-geo(.)"
                     />    
-            </text>           
+            </text>
+            <text qname="tei:TEI">
+                <!-- ==================================================== -->
+                <!-- Publisher                                            -->
+                <!--   field: "formatted-publisher"                       -->
+                <!--                                                      -->
+                <!-- Definite and indefinite articles are stored in @rend -->
+                <!--  on <bibl>; we append them, e.g., from               -->
+                <!--  <publisher rend="The">Times</publisher> to          -->
+                <!--  "Times, The"                                        -->
+                <!-- ==================================================== -->
+        
+                <field name="formatted-publisher"
+                    expression="descendant::tei:sourceDesc/descendant::tei:bibl/tei:publisher
+                        ! string-join((@rend, .), ' ') => normalize-space()"/>
+                <!-- ==================================================== -->
+                <!-- Article title (field)                                -->
+                <!--                                                      -->
+                <!-- format-title() moves definite and indefinite article -->
+                <!--   to end, e.g., from "A Ghost" to "Ghost, A"         -->
+                <!-- ==================================================== -->
+                <field 
+                    name="formatted-title" 
+                    expression="descendant::tei:titleStmt/tei:title 
+                        ! hoax:format-title(.)"/>
+                <!-- ==================================================== -->
+                <!-- Publication date (field)                             -->
+                <!-- Field "formatted-date" is human-readable full date   -->
+                <!-- ==================================================== -->
+                <field name="formatted-date" 
+                    expression="descendant::tei:sourceDesc/descendant::tei:bibl/tei:date/@when
+                    ! xs:date(.)
+                    ! format-date(., '[MNn] [D], [Y]')"/>
+                <!-- ==================================================== -->
+                <!-- Incipit (field)                                      -->
+                <!--                                                      -->
+                <!-- First five words of <body>, with trailing ellipsis   -->
+                <!-- ==================================================== -->
+                <field name="incipit"
+                    expression="string-join((descendant::tei:body ! tokenize(.)[position() lt 6], '…'), ' ')"/>
+            </text>
         </lucene>
     </index>
 </collection>

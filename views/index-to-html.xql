@@ -17,6 +17,4 @@ Learn more about XIncludes on pg 35 of the eXist book (Siegel and Retter).
 =====:)
 declare variable $data as document-node() := request:get-data();
 
-<html:section>
-    <xi:include href="{concat($exist:prefix, '/hoaXed/resources/includes/index.xhtml')}"/>
-</html:section>
+<xi:include href="{concat($exist:prefix, '/hoaXed/resources/includes/index.xhtml')}"/>

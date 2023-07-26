@@ -17,23 +17,43 @@ declare variable $path-to-data as xs:string :=
     $exist:root || $exist:controller || '/data';
 
 (:=====
-Declare variables
+Declare variables to set path to articles
 =====:)
 declare variable $articles-coll as document-node()+ 
     := collection($path-to-data || '/hoax_xml');
 declare variable $articles as element(tei:TEI)+ 
     := $articles-coll/tei:TEI;
+
+(:=====
+Declare variables to retrieve query parameters for fields
+=====:)
+
+declare variable $publishers as xs:string* := request:get-parameter('publishers[]', ());
+declare variable $decades as xs:string* := request:get-parameter('decades[]', ());
+declare variable $month-years as xs:string* := request:get-parameter('month-years[]', ());
+
 (:=====
 Address each article, output one list element containing item elements, which hold title and date elements
 =====:)
-<m:list>
-{for $article in $articles
-    let $title as xs:string := $article//tei:titleStmt/tei:title ! fn:string()
-    let $year as xs:string := $article//tei:sourceDesc//tei:bibl//tei:date/@when ! fn:string()
-    return 
-        <m:item>
-            <m:title>{$title}</m:title>
-            <m:date>{$year}</m:date>
-        </m:item>
-}
-</m:list>
+<m:articles>
+{for $article in $articles[ft:query(., (), map{'fields':('formatted-title','formatted-publisher', 'formatted-date', 'incipit')})]
+            let $id as xs:string := 
+                $article/@xml:id ! string()
+            let $title as xs:string := 
+                ft:field($article, "formatted-title")
+            let $publisher as xs:string+ := 
+                ft:field($article, "formatted-publisher")
+            let $date as xs:string := 
+                ft:field($article, "formatted-date")
+            let $incipit as xs:string :=
+                ft:field($article, "incipit")
+            order by $title
+            return
+            <m:article>
+                <m:id>{$id}</m:id>
+                <m:title>{$title}</m:title>
+                <m:publisher>{$publisher}</m:publisher>
+                <m:date>{$date}</m:date>
+                <m:incipit>{$incipit}</m:incipit>
+            </m:article>
+    }</m:articles>

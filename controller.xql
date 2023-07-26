@@ -26,7 +26,9 @@ else
             </forward>
             <view>
                 (:transformation to html is different for different modules:)
-                <forward url="{concat($exist:controller, '/views/', $exist:path, '-to-html.xql')}"/>
+                <forward url="{concat($exist:controller, '/views/', $exist:path, '-to-html.xql')}">
+                    <add-parameter name="exist:prefix" value="{$exist:prefix}"/>
+                </forward>
                 <forward url="{concat($exist:controller, '/views/', 'html-template.xql')}"/>
             </view>
             <cache-control cache="no"/>

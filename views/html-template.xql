@@ -32,7 +32,9 @@ declare variable $text as document-node() := request:get-data();
             </header>
             <nav>
                 <ul>
-                    <li><a href="titles">Articles</a></li>    
+                    <li><a href="titles">Articles</a></li>
+                    <li><a href="people">People</a></li>
+                    <li><a href="places">Places</a></li>   
                 </ul>
             </nav>
         </section> 

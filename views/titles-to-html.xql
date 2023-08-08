@@ -29,8 +29,9 @@ HTML rendering begins here
 return
     <html:ul>
         <html:li>
-            <html:a href="read{$link}">{$title}</html:a> 
+            <html:a href="read{$link}">{$title}</html:a> | <html:a href="tei{$link}">XML</html:a>
         </html:li> 
+        
         <html:li>{$publisher}</html:li>
         <html:li>{$date}</html:li>
         <html:li>{$incipit}</html:li>

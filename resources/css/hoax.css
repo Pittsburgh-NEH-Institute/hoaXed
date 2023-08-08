@@ -222,3 +222,18 @@ mark {
     background-color: var(--highlight-color);
 }
 /*
+
+==========
+pre element containing code child introduces unwanted white space;
+this corrects it visually 
+==========
+*/
+pre.tei {
+    white-space: pre-line;
+}
+
+pre.tei>code {
+    white-space: pre;
+}
+
+/*

@@ -4,17 +4,23 @@ declare namespace hoax ="http://www.obdurodon.org/hoax";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace m="http://www.obdurodon.org/model";
 declare namespace xi="http://www.w3.org/2001/XInclude";
+
 (:=====
-The controller passes the location where the app is insstalled as the
-value of the $exist:prefix parameter, which we use to construct a
-path to the file to include. The second argument to request:get-parameter()
-is the default location.
+There is no need to retrieve the data from the model because we’re
+not going to use it. In Real Life we’d omit the line entirely; here
+we just comment it out to draw attention to its omission.
+
+declare variable $data as document-node() := request:get-data();
 =====:)
-declare variable $exist:prefix as xs:string := request:get-parameter("exist:prefix", "/apps");
+
 (:=====
 We added the xi namespace below to enable XIncludes.
 Learn more about XIncludes on pg 35 of the eXist book (Siegel and Retter).
 =====:)
-declare variable $data as document-node() := request:get-data();
-
-<xi:include href="{concat($exist:prefix, '/hoaXed/resources/includes/index.xhtml')}"/>
+<xi:include href="{
+        concat(
+        request:get-attribute('$exist:prefix'),
+        request:get-attribute('$exist:controller'), 
+        '/resources/includes/index.xhtml'
+        )
+    }"/>

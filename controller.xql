@@ -13,22 +13,16 @@ declare variable $ftcontroller as xs:string := concat($context, $exist:prefix, $
 
 if ($exist:resource eq '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="index"/>
+        <redirect url="{concat($context, $exist:prefix, $exist:controller, '/index')}"/>
     </dispatch>
 else
     if (not(contains($exist:resource, '.')))
     then
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-            <forward url="{concat($exist:controller, '/modules', $exist:path, '.xql')}">
-                <add-parameter name="exist:root" value="{$exist:root}"/>
-                <add-parameter name="exist:controller" value="{$exist:controller}"/>
-                <add-parameter name="exist:prefix" value="{$exist:prefix}"/>
-            </forward>
+            <forward url="{concat($exist:controller, '/modules', $exist:path, '.xql')}"/>
             <view>
                 (:transformation to html is different for different modules:)
-                <forward url="{concat($exist:controller, '/views/', $exist:path, '-to-html.xql')}">
-                    <add-parameter name="exist:prefix" value="{$exist:prefix}"/>
-                </forward>
+                <forward url="{concat($exist:controller, '/views/', $exist:path, '-to-html.xql')}"/>
                 <forward url="{concat($exist:controller, '/views/', 'html-template.xql')}"/>
             </view>
             <cache-control cache="no"/>

@@ -42,6 +42,60 @@ declare function hoax:round-geo($input as xs:string, $precision as xs:integer) a
     )
 };
 
+(:~ 
+ : hoax:get-place-info() constructs a model for place information for a single place.
+ 
+ : @param $place : a TEI place element
+ : @return place element in the model namespace
+ :)
+declare function hoax:get-place-info($place as element(tei:place)) as element(m:place) {
+    let $place-id := $place/@xml:id
+    let $name as xs:string := string-join($place/tei:placeName, ', ')
+    let $type as xs:string? := $place/@type ! string()
+    let $link as xs:string? := $place/tei:bibl ! string()
+    let $geo as xs:string := $place/tei:location/tei:geo ! string()
+    let $settlement as xs:string? := $place/tei:location/tei:settlement ! string ()
+    let $parent-place as xs:string? := $place/parent::tei:place/tei:placeName ! string () 
+    return (: NB: Some values may be empty and should be created anyway :)
+        <m:place>
+            {$place-id}
+            <m:name>{$name}</m:name>
+            <m:type>{$type}</m:type>
+            <m:geo>{$geo}</m:geo>
+            <m:settlement>{$settlement}</m:settlement>
+            <m:parent>{$parent-place}</m:parent>
+            {if (empty($link)) 
+                then ()
+                else <m:link>{$link}</m:link>}
+        </m:place>
+};
+
+
+(: People functions :)
+(:~ 
+ : hoax:get-person-info() constructs a model for personal information for a single person.
+ 
+ : @param $place : a TEI person element
+ : @return person element in the model namespace
+ :)
+
+declare function hoax:get-person-info($person as element(tei:person)) as element(m:person) {
+    let $surname as xs:string := $person/tei:persName/tei:surname ! string()
+    let $forename as xs:string? := $person/tei:persName/tei:forename[1] ! string()
+    let $abt as xs:string? := $person//tei:bibl ! normalize-space()
+    let $job as xs:string? := $person//tei:occupation ! normalize-space()
+    let $role as xs:string? := $person/@role ! normalize-space()
+    let $gm as xs:string? := $person/@sex ! string()
+    return
+        <m:person>
+            <m:name>{string-join(($surname, $forename), ', ')}</m:name>
+            <m:about>{$abt}</m:about>
+            <m:job>{$job}</m:job>
+            <m:role>{$role}</m:role>
+            <m:gm>{$gm}</m:gm>
+        </m:person>
+};
+
 (: Text functions :)
 
 (:~
@@ -56,5 +110,31 @@ declare function hoax:format-title($title as xs:string) as xs:string {
         ! concat(upper-case(substring(., 1, 1)), substring(., 2)) => normalize-space()
     else normalize-space($title)
 };
+(:~
+ : hoax:word-count() tokenizes and counts the words in the tei:body element of a single article
+ : @param $body : a TEI body element
+ : @return xs:integer
+ :)
+declare function hoax:word-count($body as element(tei:body)) as xs:integer {
+   count(tokenize($body))
+};
+(:~
+ : hoax:initial-cap() capitalizes the first letter of a string
+ : @param $input : any xs:string
+ : @return xs:string
+ :)
+
+declare function hoax:initial-cap($input as xs:string) as xs:string {
+    concat(upper-case(substring($input, 1, 1)), substring($input, 2))
+};
+(:~
+ : hoax:create-cuuid() creates a uuid with leading consonant (stable within run)
+ : @param $input : any or no xs:string 
+ : @return an xs:string or nothing
+ :)
+declare function hoax:create-cuuid($input as xs:string?) as xs:string? {
+    if ($input) then 'h' || util:uuid($input) else ()
+};
+
 
 

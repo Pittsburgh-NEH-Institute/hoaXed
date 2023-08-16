@@ -14,8 +14,8 @@ Behaviors:
 3. Facet counts are x/y, where x is number of items selected by other facet 
    and y is total number of items (invariant). Whether the facet value is
    selected is indicated by maintaining the checkbox state.
-4. Normally returns articles that match combination of search term, publisher 
-   facets, date facets.
+4. Normally returns articles that match combination of search term and publisher 
+   facets.
 5. There are three situations that yield no hits:
     a) If search term is not found in *any* documents (not just for selected
     facets), return informative message.
@@ -84,7 +84,7 @@ $all-values includes facets that will eventually have zero hits
 ===== :)
 let $all-values as element(tei:TEI)+ :=
     collection($path-to-data)/tei:TEI
-    [ft:query(., ())]
+    [ft:query(., ())]           
 (: =====
 $all-hits is used for articles list, but not for facets to refine search
 ===== :)
@@ -106,6 +106,16 @@ let $all-hits as element(tei:TEI)* :=
         collection($path-to-data)/tei:TEI
         [ft:query(., $term, $hit-options)]
 
+let $term-values as element(tei:TEI)+ :=
+    if ($term instance of element(m:error))
+    (: If $term is <m:error> what we do here doesn't matter
+    because we won't return it:)
+    then
+        collection($path-to-data)/tei:TEI
+        [ft:query(., (), $hit-options)]
+    else
+        collection($path-to-data)/tei:TEI
+        [ft:query(., $term)]
 (: =====
 Return results, order is meaningful (order is used to create view): 
     1) Search term
@@ -119,7 +129,7 @@ return
     <m:publisher-facets>
         <m:publishers>{
             let $all-publisher-facets as map(*) := ft:facets($all-values, "publisher", ())
-            let $publisher-facets as map(*) := ft:facets($all-hits, "publisher", ())
+            let $publisher-facets as map(*) := ft:facets($term-values, "publisher", ())
             let $publisher-elements := 
                 map:for-each($all-publisher-facets, function($label, $count) {
                     <m:publisher>

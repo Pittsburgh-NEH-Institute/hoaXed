@@ -31,6 +31,7 @@
             <text qname="tei:TEI">
                 <!-- ==================================================== -->
                 <!-- Publisher                                            -->
+                <!--   facet: "publisher"                                 -->
                 <!--   field: "formatted-publisher"                       -->
                 <!--                                                      -->
                 <!-- Definite and indefinite articles are stored in @rend -->
@@ -38,7 +39,9 @@
                 <!--  <publisher rend="The">Times</publisher> to          -->
                 <!--  "Times, The"                                        -->
                 <!-- ==================================================== -->
-        
+                <facet dimension="publisher"
+                    expression="descendant::tei:sourceDesc/descendant::tei:bibl/tei:publisher 
+                        ! string-join((., @rend), ', ') => normalize-space()"/>
                 <field name="formatted-publisher"
                     expression="descendant::tei:sourceDesc/descendant::tei:bibl/tei:publisher
                         ! string-join((@rend, .), ' ') => normalize-space()"/>

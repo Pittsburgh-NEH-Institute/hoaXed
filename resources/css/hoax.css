@@ -236,4 +236,68 @@ pre.tei>code {
     white-space: pre;
 }
 
-/*
+/* 
+==========
+Search 
+========== 
+*/
+#advanced-search {
+    display: flex;
+}
+
+#advanced-search>aside {
+    width: 25em;
+    padding-right: 1em;
+    border-right: 1px lightgray solid;
+}
+
+#search-panel>form {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+input~.panel {
+    border-top: 1px solid black;
+}
+
+#search-panel {
+    padding-top: 1em;
+}
+
+#advanced-search h2 {
+    text-align: center;
+}
+
+#search-panel-form {
+    margin-top: 1em;
+}
+
+#search-panel ul {
+    list-style-type: none;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+
+#search-panel ul ul {
+    padding-left: 2em;
+}
+
+#search-term-row {
+    display: flex;
+    gap: .5em;
+}
+
+#clear-form a {
+    /* Reset clears only most recent values; need to reload with no selection */
+    cursor: default;
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-potential {
+    /* Gray out facets that cannot expand results with current other values 
+       NB: darkgray (#A9A9A9) is lighter than gray (#808080)
+    */
+    color: darkgray;
+}

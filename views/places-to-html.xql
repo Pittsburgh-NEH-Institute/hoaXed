@@ -27,7 +27,7 @@ declare function local:dispatch($node as node()) as item()* {
 };
 
 declare function local:table($node as element(m:places)) as element(html:table){
-    <html:table>
+    <html:table id="places">
         <html:tr>
             <html:th>Placename</html:th>
             <html:th>Latitude</html:th>

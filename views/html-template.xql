@@ -40,7 +40,8 @@ declare variable $text := request:get-data();
                 <ul>
                     <li><a href="titles">Articles</a></li>
                     <li><a href="people">People</a></li>
-                    <li><a href="places">Places</a></li> 
+                    <li><a href="places">Places</a></li>
+                    <li><a href="maps">Maps</a></li>
                 </ul>
             </nav>
         </section> 

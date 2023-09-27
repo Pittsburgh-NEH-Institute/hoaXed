@@ -20,16 +20,19 @@ declare variable $pros as xs:string := $exist:root || $exist:controller || '/dat
 
 <m:persons>
 {
-    for $person in doc($pros)/descendant::tei:listPerson/*
-    let $surname := $person/tei:persName/tei:surname
-    let $forename := $person/tei:persName/tei:forename => string-join(' ')
-    let $abt := $person//tei:bibl ! normalize-space(.)
-    let $job := $person//tei:occupation ! normalize-space(.)
-    let $role := $person/@role ! string()
-    let $gm := $person/@sex ! string()
+    for $person in doc($pros)/descendant::tei:person
+    let $surname as xs:string? := $person/tei:persName/tei:surname ! string(.)
+    let $forename as xs:string? := if ($person/tei:persName/tei:forename) 
+        then  $person/tei:persName/tei:forename => string-join(" ") 
+        else ()
+    let $abt as xs:string? := $person//tei:bibl ! normalize-space(.)
+    let $job as xs:string? := $person//tei:occupation ! normalize-space(.)
+    let $role as xs:string? := $person/@role ! string()
+    let $gm as xs:string? := $person/@sex ! string()
     return
         <m:entry>
             <m:name>{string-join(($surname, $forename), ', ')}</m:name>
+            <m:forename>{$forename}</m:forename>
             <m:about>{$abt}</m:about>
             <m:job>{$job}</m:job>
             <m:role>{$role}</m:role>

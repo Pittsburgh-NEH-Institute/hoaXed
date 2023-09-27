@@ -23,6 +23,7 @@ declare variable $gazeteer as document-node() :=
 for $entry in $gazeteer/descendant::tei:place[ft:query(., (), map{'fields':('format-lat','format-long')})]
 let $place-name as xs:string+ := $entry/tei:placeName ! string()
 let $parent as xs:string? := $entry/parent::tei:place/tei:placeName[1] ! string()
+order by $place-name[1]
 return
     <m:placeEntry>
         {$place-name !  <m:placeName>{.}</m:placeName>}

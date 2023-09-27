@@ -32,7 +32,6 @@ declare variable $pros as xs:string := $exist:root || $exist:controller || '/dat
     return
         <m:entry>
             <m:name>{string-join(($surname, $forename), ', ')}</m:name>
-            <m:forename>{$forename}</m:forename>
             <m:about>{$abt}</m:about>
             <m:job>{$job}</m:job>
             <m:role>{$role}</m:role>

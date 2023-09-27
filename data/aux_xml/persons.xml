@@ -216,7 +216,6 @@
                 <person sex="M" xml:id="stafford" role="clerk">
                     <persName>
                         <surname>Stafford</surname>
-                        <forename/>
                     </persName>
                 </person>
                 <person sex="M" xml:id="josephady" role="fraudster">

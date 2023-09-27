@@ -8,6 +8,8 @@ General
     --text-color: #444545;
     --title-color: darkgreen;
     --highlight-color: #ceded6;
+    --svg-red: #EF233C;
+    --svg-blue: #4d7ea8;
     --map-width: 90%;
     --map-height: 700px;
 }
@@ -365,3 +367,16 @@ canvas.mapboxgl-canvas {
 }
 
 /* 
+==========
+SVG Visualization
+
+colors
+========== 
+*/
+svg .wc {
+    fill: var(--svg-red);
+}
+
+svg .pc {
+    fill: var(--svg-blue);
+}

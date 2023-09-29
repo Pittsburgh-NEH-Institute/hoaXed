@@ -22,9 +22,8 @@ declare variable $pros as xs:string := $exist:root || $exist:controller || '/dat
 {
     for $person in doc($pros)/descendant::tei:person
     let $surname as xs:string? := $person/tei:persName/tei:surname ! string(.)
-    let $forename as xs:string? := if ($person/tei:persName/tei:forename) 
-        then  $person/tei:persName/tei:forename => string-join(" ") 
-        else ()
+    let $forename as xs:string? := ($person/tei:persName/tei:forename 
+        => string-join(' '))[boolean(.)]
     let $abt as xs:string? := $person//tei:bibl ! normalize-space(.)
     let $job as xs:string? := $person//tei:occupation ! normalize-space(.)
     let $role as xs:string? := $person/@role ! string()

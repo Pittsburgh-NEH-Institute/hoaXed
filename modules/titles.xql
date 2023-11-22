@@ -25,15 +25,7 @@ declare variable $articles as element(tei:TEI)+
     := $articles-coll/tei:TEI;
 
 (:=====
-Declare variables to retrieve query parameters for fields
-=====:)
-
-declare variable $publishers as xs:string* := request:get-parameter('publishers[]', ());
-declare variable $decades as xs:string* := request:get-parameter('decades[]', ());
-declare variable $month-years as xs:string* := request:get-parameter('month-years[]', ());
-
-(:=====
-Address each article, output one list element containing item elements, which hold title and date elements
+Address each article, output one list element containing item elements, which hold title, date, publisher, and incipit elements
 =====:)
 <m:articles>
 {for $article in $articles[ft:query(., (), map{'fields':('formatted-title','formatted-publisher', 'formatted-date', 'incipit')})]

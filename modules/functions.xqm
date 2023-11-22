@@ -100,15 +100,13 @@ declare function hoax:get-person-info($person as element(tei:person)) as element
 
 (:~
  : hoax:format-title() moves definite and indefinite article to 
- : the end of the title for rendering 
+ :   the end of the title for rendering 
  : @param $title : xs:string any article title
  : @return xs:string
  :)
 declare function hoax:format-title($title as xs:string) as xs:string {
-    if (matches($title, '^(The|An|A) '))
-    then replace($title, '^(The|An|A)( )(.+)', '$3, $1')
-        ! concat(upper-case(substring(., 1, 1)), substring(., 2)) => normalize-space()
-    else normalize-space($title)
+  replace($title, '^(The|An|A) (.+)', '$2, $1')
+    ! concat(upper-case(substring(., 1, 1)), substring(., 2))
 };
 (:~
  : hoax:word-count() tokenizes and counts the words in the tei:body element of a single article

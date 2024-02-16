@@ -2,11 +2,9 @@
 
 ## About
 
-hoaXed is a teaching tool intended to guide learners through the iterative development stages of creating a digital edition. This edition is an eXist-db application, though the development stages are not unique to eXist-db or even XQuery.
+hoaXed is a teaching tool intended to guide learners through the iterative development stages of creating a digital edition. This edition is an eXist-db application, though the development stages are not unique to eXist-db or even XQuery. Using a model-view-controller design pattern to construct an application over seventeen stages, the edition shows learners how we start from our research questions and build an edition that is designed to explore them.
 
-Using a model-view-controller design pattern to construct an application over 17 stages, the edition helps learners build on their research questions.
-
-In order to create methodologically innovative editions, digital humanists must be able to create bespoke interfaces and approaches that may not be available in existing edition-making platforms. For this reason, this tutorial focuses on guiding a user through an iterative approach. While we use XQuery and include some XQuery-specific instruction, this is not an XQuery tutorial. Some familiarity with XQuery is required, and for those not yet familiar we link to or reference other materials to bring learners up to speed.
+In order to create methodologically innovative editions, digital humanists must be able to create bespoke interfaces and approaches that may not be available in existing edition-making platforms. For this reason, this tutorial focuses on guiding a user through an iterative approach to this type of development. While we use XQuery and include some XQuery-specific instruction, this is not an XQuery tutorial. Some familiarity with XQuery is required, and for those not yet familiar with XQuery we link to or reference other materials to bring learners up to speed.
 
 This tutorial is an adaptation of an in-person workshop titled “Advanced digital editing: modeling the text and making the edition”, an NEH Institute for Advanced Topics in Digital Humanities. This workshop occurred in July 2022 at the University of Pittsburgh. In-person teaching materials can be found at https://pittsburgh-neh-institute.github.io/Institute-Materials-2020/.
 

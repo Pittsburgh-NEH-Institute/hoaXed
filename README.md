@@ -26,13 +26,13 @@ Next, clone this repository to your local machine. When you want to change branc
 
 If you would prefer to follow along without cloning the repository, you can navigate branches using the branch dropdown menu at the top of the “Code” tab on GitHub.
 
-![screenshot of GitHub's branch navigation menu](images/branch-menu.png)
+<img src="images/branch-menu.png" width="200em" alt="screenshot of the GitHub branch menu">
 
 ## Acknowledgements
 
 Advanced digital editing: modeling the text and making the edition is awarded by the NEH Office of Digital Humanities (ODH) and co-funded by the NEH Division of Research Programs. Any views, findings, conclusions, or recommendations expressed in materials developed for this project do not necessarily represent those of the National Endowment for the Humanities.
 
-![National Endowment for the Humanities seal](images/NEH-Preferred-Seal820.jpg)
+<img src="images/NEH-Preferred-Seal820.jpg" width="200em" alt="NEH official seal">
 
 
 

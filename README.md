@@ -28,10 +28,10 @@ The best way to become comfortable with developing your own eXist-db app is to d
 
 <table style="border: none;">
     <tr style="border: none;">
-        <td style="border: none; width: 30%;">
+        <td style="border: none;">
             <a href="https://www.neh.gov/"
                 title="National Endowment for the Humanities: Exploring the Human Endeavour">
-                <img align="left" width="156px" src="images/NEH-Preferred-Seal820.jpg" alt="NEH"
+                <img align="left" width="312px" src="images/NEH-Preferred-Seal820.jpg" alt="NEH"
                     class="rpad"/>
             </a>
         </td>
